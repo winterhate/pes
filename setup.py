@@ -27,6 +27,7 @@ setuptools.setup(
         "python-dotenv",
         "PyNaCl",
         "dnspython",
+        "requests"
     ],
     python_requires='>=3.6',
 )

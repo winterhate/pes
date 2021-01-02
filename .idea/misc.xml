@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_15" default="true" project-jdk-name="Python 3.8 (pes)" project-jdk-type="Python SDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+  <component name="SbtLocalSettings">
+    <option name="projectSyncType">
+      <map>
+        <entry key="$USER_HOME$/Github/spire" value="PREVIEW" />
+        <entry key="$USER_HOME$/Playground/akka-http-quickstart-scala" value="PREVIEW" />
+        <entry key="$USER_HOME$/Playground/akka-quickstart-scala" value="PREVIEW" />
+        <entry key="$USER_HOME$/Playground/scalar/tutorial" value="PREVIEW" />
+      </map>
+    </option>
+  </component>
+  <component name="ScalaSbtSettings">
+    <option name="customVMPath" />
+  </component>
+</project>
