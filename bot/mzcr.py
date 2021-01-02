@@ -7,9 +7,10 @@ import datetime
 def dispDigest():
     d = digest()
     return (
-        f"_Tak štěk pes {d['pes_date']:%d.%m.%Y}:_\n"
-        f"🐕 Skóre:          {d['pes_value']}, takže stupeň {d['pes_tier']}\n"
-        f"🐕 R:              {d['pes_simple_r']:.2f}\n"
+        f"Tak štěk pes dnes, {d['pes_date']:%d.%m.%Y}:\n"
+        f"Stupeň:            {d['pes_tier']}\n" 
+        f"Skóre:             {d['pes_value']}\n"
+        f"R:                 {d['pes_simple_r']:.2f}\n"
         f"Testy:             {d['tests_daily']}\n"
         f"Nově pozitivní:    {d['infected_daily']}\n"
         f"Podíl pozitivních: {d['positive_share']*100:.2f}%\n"
@@ -81,6 +82,3 @@ def asIterable(response):
 
 def removeBom(text):
     return text[1:]
-
-
-print(dispDigest())
