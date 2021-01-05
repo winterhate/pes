@@ -7,10 +7,11 @@ import datetime
 def dispDigest():
     d = digest()
     return (
-        f"Tak štěk pes dnes, {d['pes_date']:%d.%m.%Y}:\n"
+        f"Tak štěk pes...    {d['pes_date']:%d.%m.%Y}:\n"
         f"Stupeň:            {d['pes_tier']}\n" 
         f"Skóre:             {d['pes_value']}\n"
         f"R:                 {d['pes_simple_r']:.2f}\n"
+        f"--- Přehled ze dne {d['overview_date']:%d.%m.%Y}\n"
         f"Testy:             {d['tests_daily']}\n"
         f"Nově pozitivní:    {d['infected_daily']}\n"
         f"Podíl pozitivních: {d['positive_share']*100:.2f}%\n"
@@ -27,6 +28,7 @@ def digest():
         'pes_value': int(pes['body']),
         'pes_tier': tier(int(pes['body'])),
         'pes_simple_r': float(pes['simple_r']),
+        'overview_date': datetime.datetime.strptime(overview['datum'], '%Y-%m-%d').date(),
         'deaths_total': int(overview['umrti']),
         'active_cases': int(overview['aktivni_pripady']),
         'in_hospital': int(overview['aktualne_hospitalizovani']),
