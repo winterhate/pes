@@ -52,8 +52,7 @@ def tier(points):
         return 5
 
 
-pesDataUrl = 'https://share.uzis.cz/s/BRfppYFpNTddAy4/download?path=%2F&files=pes_CR.csv'
-
+pesDataUrl = 'https://share.uzis.cz/s/62bR5mfK3DjL2Xs/download?path=%2F&files=pes_CR_verze2.csv'
 
 def pesData():
     return collectCsvRows(pesDataUrl, ';')
