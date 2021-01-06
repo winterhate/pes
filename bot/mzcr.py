@@ -2,19 +2,19 @@ import csv
 import requests
 from io import StringIO
 import datetime
-
+import traceback
 
 def dispDigest():
     d = digest()
     return (
         f"Tak štěk pes...    {d['pes_date']:%d.%m.%Y}:\n"
-        f"Stupeň:            {d['pes_tier']}\n" 
+        f"Stupeň:            {d['pes_tier']}\n"
         f"Skóre:             {d['pes_value']}\n"
         f"R:                 {d['pes_simple_r']:.2f}\n"
         f"--- Přehled ze dne {d['overview_date']:%d.%m.%Y}\n"
         f"Testy:             {d['tests_daily']}\n"
         f"Nově pozitivní:    {d['infected_daily']}\n"
-        f"Podíl pozitivních: {d['positive_share']*100:.2f}%\n"
+        f"Podíl pozitivních: {d['positive_share'] * 100:.2f}%\n"
         f"Hospitalizovaní:   {d['in_hospital']}\n"
         f"Aktivní případy:   {d['active_cases']}\n"
     )
@@ -24,7 +24,7 @@ def digest():
     pes = pesData()[-1]
     overview = overviewData()[-1]
     return {
-        'pes_date': datetime.datetime.strptime(pes['datum_zobrazeni'], '%Y-%m-%d').date(),
+        'pes_date': datetime.datetime.strptime(pes['datum_zobrazeni'], '%d.%m.%Y').date(),
         'pes_value': int(pes['body']),
         'pes_tier': tier(int(pes['body'])),
         'pes_simple_r': float(pes['simple_r']),
@@ -34,8 +34,7 @@ def digest():
         'in_hospital': int(overview['aktualne_hospitalizovani']),
         'infected_daily': int(overview['potvrzene_pripady_vcerejsi_den']),
         'tests_daily': int(overview['provedene_testy_vcerejsi_den']),
-        'positive_share': int(overview['potvrzene_pripady_vcerejsi_den'])
-                          / int(overview['provedene_testy_vcerejsi_den'])
+        'positive_share': int(overview['potvrzene_pripady_vcerejsi_den'])/int(overview['provedene_testy_vcerejsi_den'])
     }
 
 
@@ -53,6 +52,7 @@ def tier(points):
 
 
 pesDataUrl = 'https://share.uzis.cz/s/62bR5mfK3DjL2Xs/download?path=%2F&files=pes_CR_verze2.csv'
+
 
 def pesData():
     return collectCsvRows(pesDataUrl, ';')
@@ -82,4 +82,15 @@ def asIterable(response):
 
 
 def removeBom(text):
-    return text[1:]
+    if text[0] == '\ufeff':
+        return text[1:]
+    else:
+        return text
+
+
+if __name__ == "__main__":
+    try:
+        print("```" + dispDigest() + "```")
+    except:
+        print(traceback.format_exc())
+
