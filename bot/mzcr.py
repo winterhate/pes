@@ -24,7 +24,7 @@ def digest():
     pes = pesData()[-1]
     overview = overviewData()[-1]
     return {
-        'pes_date': datetime.datetime.strptime(pes['datum_zobrazeni'], '%d.%m.%Y').date(),
+        'pes_date': datetime.datetime.strptime(pes['datum_zobrazeni'], '%Y-%m-%d').date(),
         'pes_value': int(pes['body']),
         'pes_tier': tier(int(pes['body'])),
         'pes_simple_r': float(pes['simple_r']),
@@ -51,7 +51,7 @@ def tier(points):
         return 5
 
 
-pesDataUrl = 'https://share.uzis.cz/s/62bR5mfK3DjL2Xs/download?path=%2F&files=pes_CR_verze2.csv'
+pesDataUrl = 'https://share.uzis.cz/s/BRfppYFpNTddAy4/download?path=%2F&files=pes_CR_verze2.csv'
 
 
 def pesData():
